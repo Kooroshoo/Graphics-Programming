@@ -399,4 +399,5 @@ FodyWeavers.xsd
 
 # dont ignore 
 !Dependencies/SFML-2.5.1/**
+!Dependencies/glew/**
 !*.user
