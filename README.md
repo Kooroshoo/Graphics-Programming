@@ -3,6 +3,7 @@
 This project aims to teach me several aspects of computer graphics programming with OpenGL.
 
 Animated Background:
+
 ![animated background](https://github.com/Kooroshoo/Graphics-Programming/assets/26629624/086d3ddb-4fda-4a2a-bd6f-db7c2041024e)
 
 
