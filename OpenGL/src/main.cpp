@@ -47,26 +47,30 @@ int main()
 		-0.8f, -0.4f, 0.0f
 	};
 
-	// Create VAO
+	// Create VAO (A Vertex Array Object store for each attribute what the aforementioned format of that attribute is and which buffer it comes from (you can use multiple buffers to store different attributes of the same mesh))
 	GLuint VAO;
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
-	glEnableVertexAttribArray(0);
+	
 
-
-	// Create VBO
+	// Create VBO (Vertex Buffer Object is an array of all our data (positions, colors, texture coordinates, normals, etc.). All our data will be sent to the GPU memory once. This helps with efficiency)
 	GLuint VBO;
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+
+	// Define how to interperate the data from the VBO when we send it to the vertex shader
+	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+
 
 	// Bind both the VBO and VAO to 0 so that we don't accidentally modify the VAO and VBO we created
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
 
-	// Compile shaders
+	// Define the GPU pipiline by compiling shaders 
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
 	glCompileShader(vertexShader);
@@ -117,7 +121,7 @@ int main()
 		glUseProgram(shaderProgram);
 		// Bind the VAO so OpenGL knows to use it
 		glBindVertexArray(VAO);
-		// Draw the triangle using the GL_TRIANGLES primitive
+		// Draw the points using the GL_POINTS primitive
 		glDrawArrays(GL_POINTS, 0, 6);
 
 
