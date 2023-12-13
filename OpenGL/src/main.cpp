@@ -1,5 +1,4 @@
 #include <GL/glew.h>
-#include <GL/freeglut.h>
 #include <GL/glfw3.h>
 
 #include "cyCodeBase/cyGL.h"
