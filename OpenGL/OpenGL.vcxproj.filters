@@ -20,55 +20,55 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\cyCodeBase-master\cyAlphaDistribution.h">
+    <ClInclude Include="src\cyCodeBase\cyAlphaDistribution.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cyCodeBase-master\cyBVH.h">
+    <ClInclude Include="src\cyCodeBase\cyBVH.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cyCodeBase-master\cyColor.h">
+    <ClInclude Include="src\cyCodeBase\cyColor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cyCodeBase-master\cyCore.h">
+    <ClInclude Include="src\cyCodeBase\cyCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cyCodeBase-master\cyGL.h">
+    <ClInclude Include="src\cyCodeBase\cyGL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cyCodeBase-master\cyHairFile.h">
+    <ClInclude Include="src\cyCodeBase\cyHairFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cyCodeBase-master\cyHeap.h">
+    <ClInclude Include="src\cyCodeBase\cyHeap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cyCodeBase-master\cyIVector.h">
+    <ClInclude Include="src\cyCodeBase\cyIVector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cyCodeBase-master\cyLightingGrid.h">
+    <ClInclude Include="src\cyCodeBase\cyLightingGrid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cyCodeBase-master\cyMatrix.h">
+    <ClInclude Include="src\cyCodeBase\cyMatrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cyCodeBase-master\cyPointCloud.h">
+    <ClInclude Include="src\cyCodeBase\cyPointCloud.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cyCodeBase-master\cyPolynomial.h">
+    <ClInclude Include="src\cyCodeBase\cyPolynomial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cyCodeBase-master\cyQuat.h">
+    <ClInclude Include="src\cyCodeBase\cyQuat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cyCodeBase-master\cySampleElim.h">
+    <ClInclude Include="src\cyCodeBase\cySampleElim.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cyCodeBase-master\cyTimer.h">
+    <ClInclude Include="src\cyCodeBase\cyTimer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cyCodeBase-master\cyTriMesh.h">
+    <ClInclude Include="src\cyCodeBase\cyTriMesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cyCodeBase-master\cyVector.h">
+    <ClInclude Include="src\cyCodeBase\cyVector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,150 +1,49 @@
-/// GLEW is needed to provide OpenGL extensions.
 #include <GL/glew.h>
+#include <GL/freeglut.h>
 
-#include <SFML/Window.hpp>
-#include <SFML/OpenGL.hpp>
+#include "cyCodeBase/cyGL.h"
 
+void display() {
+    glClear(GL_COLOR_BUFFER_BIT);
 
-// Vertex Shader source code
-const char* vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 aPos;\n"
-"void main()\n"
-"{\n"
-"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-"}\0";
-//Fragment Shader source code
-const char* fragmentShaderSource = "#version 330 core\n"
-"out vec4 FragColor;\n"
-"void main()\n"
-"{\n"
-"   FragColor = vec4(1.0f, 1.0f, 1.0f, 1.0f);\n"
-"}\n\0";
+    glBegin(GL_TRIANGLES);
+    glColor3f(1.0, 0.0, 0.0); // Red color
+    glVertex2f(0.0, 1.0);
 
+    glColor3f(0.0, 1.0, 0.0); // Green color
+    glVertex2f(-1.0, -1.0);
 
+    glColor3f(0.0, 0.0, 1.0); // Blue color
+    glVertex2f(1.0, -1.0);
+    glEnd();
 
-int main()
-{
-	// create the window
-	sf::Window window(sf::VideoMode(800, 800), "OpenGL", sf::Style::Default, sf::ContextSettings(32));
-	window.setVerticalSyncEnabled(true);
-
-	// activate the window
-	window.setActive(true);
-
-	// load resources, initialize the OpenGL states, ... =======================================================================
-
-	//  initialize GLEW 
-	GLenum err = glewInit();
-
-	// Vertices coordinates
-	GLfloat vertices[] =
-	{
-		-0.8f, 0.4f, 0.0f,
-		0.8f, 0.4f, 0.0f,
-		0.8f, -0.4f, 0.0f,
-		0.0f, 0.4f, 0.0f,
-		0.0f, -0.4f, 0.0f,
-		-0.8f, -0.4f, 0.0f
-	};
-
-	// Create VAO (A Vertex Array Object store for each attribute what the aforementioned format of that attribute is and which buffer it comes from (you can use multiple buffers to store different attributes of the same mesh))
-	GLuint VAO;
-	glGenVertexArrays(1, &VAO);
-	glBindVertexArray(VAO);
-	
-
-	// Create VBO (Vertex Buffer Object is an array of all our data (positions, colors, texture coordinates, normals, etc.). All our data will be sent to the GPU memory once. This helps with efficiency)
-	GLuint VBO;
-	glGenBuffers(1, &VBO);
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-
-	// Define how to interperate the data from the VBO when we send it to the vertex shader
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-
-
-	// Bind both the VBO and VAO to 0 so that we don't accidentally modify the VAO and VBO we created
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
-
-
-	// Define the GPU pipiline by compiling shaders 
-	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
-
-	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
-
-	GLuint shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
-
-	// Delete the now useless Vertex and Fragment Shader objects
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
-
-	// --------------------------------------------------------------------------------------------------------------------
-
-	// run the main loop
-	bool running = true;
-	while (running)
-	{
-		// handle events
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-			{
-				// end the program
-				running = false;
-			}
-			else if (event.type == sf::Event::Resized)
-			{
-				// adjust the viewport when the window is resized
-				glViewport(0, 0, event.size.width, event.size.height);
-			}
-		}
-
-		// clear the buffers
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-		// draw... =========================================================================================
-
-
-
-		// Tell OpenGL which Shader Program we want to use
-		glUseProgram(shaderProgram);
-		// Bind the VAO so OpenGL knows to use it
-		glBindVertexArray(VAO);
-		// Draw the points using the GL_POINTS primitive
-		glDrawArrays(GL_POINTS, 0, 6);
-
-
-
-
-
-		// --------------------------------------------------------------------------------------------
-
-		// end the current frame (internally swaps the front and back buffers)
-		window.display();
-	}
-
-	// release resources... =============================================================================================
-
-	// Delete all the objects we've created
-	glDeleteVertexArrays(1, &VAO);
-	glDeleteBuffers(1, &VBO);
-	glDeleteProgram(shaderProgram);
-
-
-
-	// --------------------------------------------------------------------------------------------
-
-	return 0;
+    glFlush();
 }
 
+void debugCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam) {
+    // Your debug callback implementation here
+    // This function will be called when OpenGL generates debug messages
+    // You can handle/debug the messages received here
+}
+
+int main(int argc, char** argv) {
+    glutInit(&argc, argv);
+    glutInitContextFlags(GLUT_DEBUG);
+    glutCreateWindow("OpenGL");
+
+    // Initialize GLEW 
+    GLenum err = glewInit();
+    if (err != GLEW_OK) {
+        fprintf(stderr, "GLEW Error: %s\n", glewGetErrorString(err));
+        return -1;
+    }
+
+    // Register display function
+    glutDisplayFunc(display);
+
+    // Enable debugging by registering the debug callback function
+    CY_GL_REGISTER_DEBUG_CALLBACK; 
+
+    glutMainLoop();
+    return 0;
+}
