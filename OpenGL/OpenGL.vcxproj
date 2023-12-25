@@ -150,11 +150,7 @@ xcopy /y "$(SolutionDir)\glew32.dll" "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\EBO.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\shaderClass.cpp" />
-    <ClCompile Include="src\VAO.cpp" />
-    <ClCompile Include="src\VBO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\cyCodeBase\cyAlphaDistribution.h" />
@@ -174,14 +170,10 @@ xcopy /y "$(SolutionDir)\glew32.dll" "$(TargetDir)"</Command>
     <ClInclude Include="src\cyCodeBase\cyTimer.h" />
     <ClInclude Include="src\cyCodeBase\cyTriMesh.h" />
     <ClInclude Include="src\cyCodeBase\cyVector.h" />
-    <ClInclude Include="src\EBO.h" />
-    <ClInclude Include="src\shaderClass.h" />
-    <ClInclude Include="src\VAO.h" />
-    <ClInclude Include="src\VBO.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\default.frag" />
-    <None Include="src\default.vert" />
+    <None Include="shaders\shader.frag" />
+    <None Include="shaders\shader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
